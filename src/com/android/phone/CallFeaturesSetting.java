@@ -52,6 +52,8 @@ import com.android.phone.settings.PhoneAccountSettingsFragment;
 import com.android.phone.settings.VoicemailSettingsActivity;
 import com.android.phone.settings.fdn.FdnSetting;
 
+import com.android.phone.utils.PackageUtils;
+
 import java.util.List;
 
 /**
@@ -312,6 +314,10 @@ public class CallFeaturesSetting extends PreferenceActivity
                         CarrierConfigManager.KEY_CARRIER_VOLTE_TTY_SUPPORTED_BOOL)) {
             TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             /* tm.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE); */
+        }
+
+        if (!PackageUtils.isPackageInstalled(this,"com.qualcomm.qti.ims")) {
+            prefSet.removePreference(findPreference("ims_settings_key"));
         }
 
         final PhoneAccountHandle simCallManager = mTelecomManager.getSimCallManager();
