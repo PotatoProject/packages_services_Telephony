@@ -246,20 +246,10 @@ final class TelecomAccountRegistry {
             }
 
             if (icon == null) {
-                // TODO: Switch to using Icon.createWithResource() once that supports tinting.
                 Resources res = mContext.getResources();
-                Drawable drawable = res.getDrawable(DEFAULT_SIM_ICON, null);
-                drawable.setTint(res.getColor(R.color.default_sim_icon_tint_color, null));
-                drawable.setTintMode(PorterDuff.Mode.SRC_ATOP);
-
-                int width = drawable.getIntrinsicWidth();
-                int height = drawable.getIntrinsicHeight();
-                Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(bitmap);
-                drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-                drawable.draw(canvas);
-
-                icon = Icon.createWithBitmap(bitmap);
+                icon = Icon.createWithResource(mContext, DEFAULT_SIM_ICON);
+                icon.setTint(res.getColor(R.color.default_sim_icon_tint_color, null));
+                icon.setTintMode(PorterDuff.Mode.SRC_ATOP);
             }
 
             // Check to see if the newly registered account should replace the old account.
