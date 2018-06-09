@@ -65,7 +65,7 @@ import com.android.phone.settings.VoicemailSettingsActivity;
 import com.android.phone.settings.fdn.FdnSetting;
 import com.android.services.telephony.sip.SipUtil;
 
-import com.android.internal.util.omni.PackageUtils;
+import com.android.internal.util.potato.PackageUtils;
 
 import java.lang.String;
 import java.util.ArrayList;
