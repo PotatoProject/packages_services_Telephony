@@ -79,6 +79,16 @@
     <protected-broadcast android:name= "com.android.phone.vvm.ACTION_VISUAL_VOICEMAIL_SERVICE_EVENT" />
     <protected-broadcast android:name= "com.android.internal.telephony.CARRIER_VVM_PACKAGE_INSTALLED" />
     <protected-broadcast android:name= "com.android.cellbroadcastreceiver.GET_LATEST_CB_AREA_INFO" />
+    <protected-broadcast android:name= "org.codeaurora.VOIP_VOPS_SSAC_STATUS" />
+    <protected-broadcast android:name= "org.codeaurora.intent.action.ACTION_UICC_MANUAL_PROVISION_STATUS_CHANGED" />
+    <protected-broadcast android:name= "org.codeaurora.intent.action.ACTION_RADIO_CAPABILITY_UPDATED" />
+    <protected-broadcast android:name= "org.codeaurora.intent.action.SUBSCRIPTION_INFO_RECORD_ADDED" />
+    <protected-broadcast android:name= "org.codeaurora.intent.action.ACTION_NETWORK_SPECIFIER_SET" />
+    <protected-broadcast android:name= "org.codeaurora.intent.action.ACTION_DDS_SWITCH_DONE" />
+    <protected-broadcast android:name= "codeaurora.intent.action.ACTION_MANAGED_ROAMING_IND" />
+    <protected-broadcast android:name= "org.codeaurora.intent.action.PRIMARY_CARD_CHANGED_IN_SERVICE" />
+    <protected-broadcast android:name= "org.codeaurora.intent.action.ACTION_SET_PRIMARY_CARD_DONE" />
+    <protected-broadcast android:name= "codeaurora.intent.action.ACTION_LTE_CONFIGURE" />
 
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -175,6 +185,9 @@
     <uses-permission android:name="android.permission.UPDATE_DEVICE_STATS" />
     <uses-permission android:name="android.permission.MANAGE_NETWORK_POLICY" />
     <uses-permission android:name="android.permission.READ_NETWORK_USAGE_HISTORY" />
+
+    <!-- Needed for some qti-telephony-common jars  -->
+    <uses-permission android:name="android.permission.OVERRIDE_WIFI_CONFIG" />
 
     <application android:name="PhoneApp"
             android:persistent="true"
@@ -388,6 +401,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="CallForwardType"
+                android:label="@string/call_forward_option"
+                android:configChanges="orientation|screenSize|keyboardHidden"
+                android:theme="@style/SettingsLight">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
         <!-- fdn setting -->
         <activity android:name="com.android.phone.settings.fdn.FdnSetting"
                 android:label="@string/fdn"
@@ -593,7 +615,7 @@
 
         <activity android:name="com.android.phone.settings.VoicemailSettingsActivity"
             android:label="@string/voicemail"
-            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
             android:theme="@style/DialerSettingsLight">
             <intent-filter >
                 <!-- DO NOT RENAME. There are existing apps which use this string. -->
